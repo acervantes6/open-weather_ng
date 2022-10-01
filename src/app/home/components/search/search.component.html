@@ -1,0 +1,53 @@
+<form [formGroup]="myForm" (submit)="submitCity()">
+    <div class="mb-3">
+      <label class="form-label">Ingresa una ciudad</label>
+      <input type="text" class="form-control" formControlName="cityName" placeholder="Nombre de la ciudad">
+            <span class="form-text text-danger"
+             *ngIf="fieldIsValid('cityName')"
+            >
+                Este campo es obligatorio
+            </span>
+      <br>
+      <button type="submit" class="mt-2 btn btn-primary float-end">
+        Obtener Clima
+      </button>
+    </div>
+</form>
+
+<br>
+<hr>
+<br>
+<div *ngIf="weather" class="row">
+  <div class="col">
+    <div class="card card-body">
+      <h4>City: {{ weather.name }}</h4>
+      <p>Temperature: {{ weather.main.temp }}</p>
+      <p>Longitud: {{ weather.coord.lon }}</p>
+      <p>Latitud: {{ weather.coord.lat }}</p>
+      <p>Humidity: {{ weather.main.humidity }}</p>
+      <p>Pressure: {{ weather.main.pressure }}</p>
+      <p>Description: {{ weather.weather[0].description }}</p>
+    </div>
+  </div>
+</div>
+
+
+<span>Valid</span>
+<pre>{{ myForm.valid }}</pre>
+
+<span>Value</span>
+<pre>{{ myForm.value | json }}</pre>
+
+<span>Touched</span>
+<pre>{{ myForm.touched }}</pre>
+
+
+<!-- <form (submit)="submitLocation(cityName)">
+  <div class="mb-3">
+    <label class="form-label">Ingresa una ciudad</label>
+    <input type="text" class="form-control" placeholder="Nombre de la ciudad" #cityName>
+    <br>
+    <button type="submit" class="mt-2 btn btn-primary float-end">Obtener Clima</button>
+  </div>
+</form> -->
+

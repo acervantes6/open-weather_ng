@@ -1,4 +1,8 @@
 # Finvivir Challenge
+
+Please click this link for open app in your browser:
+
+https://vermillion-snickerdoodle-0c5400.netlify.app/
 # open-weather_ng for a Finvivir technical challenge
 Project to search for a city and show the weather information by API Open Weather
 # Git Repository
@@ -33,3 +37,7 @@ The page will reload when you make changes.\
 ​
 If you want to edit the code, you can install any Code Editor as Visual Studio Code https://code.visualstudio.com/download.
 ​
+
+## Netlify aaplication
+​
+If you only want to open the application on your brpwser... https://vermillion-snickerdoodle-0c5400.netlify.app/

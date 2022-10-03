@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { catchError, Observable, switchMap, tap } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import { City } from '../../interfaces/city.interface';
 import { List } from '../../interfaces/forecast.interface';
 import { SearchService } from '../../services/search.service';

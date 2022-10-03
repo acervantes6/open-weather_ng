@@ -1,2 +1,30 @@
-# open-weather_ng
-proyecto para buscar una ciudad y mostrar información del API Open Weather
+# Finvivir Challenge
+# open-weather_ng for a Finvivir technical challenge
+Project to search for a city and show the weather information by API Open Weather
+# Git Repository
+https://github.com/acervantes6/open-weather_ng
+
+## Setup
+​
+To run this application you need install Node.js [https://nodejs.org/en/download/] https://nodejs.org/en/download/. 
+​
+Also you need to install [https://git-scm.com/downloads] Git and a CLI to execute Node commands. You can install a bash CLI during git installation.
+​
+After that you can clone this repository [https://github.com/acervantes6/open-weather_ng] using the next command.
+​
+> git clone git@github.com:acervantes6/open-weather_ng.git
+​
+Once you have cloned the repository in your local machine you can install all the dependencies with the next command.
+​
+> npm install
+​
+To run the code in your local environment in the development mode, you need to execute the next command:
+​
+> npm start
+​
+Open [http://localhost:4200] to view it in your browser.
+​
+The page will reload when you make changes.\
+​
+If you want to edit the code, you can install any Code Editor as Visual Studio Code [https://code.visualstudio.com/download].
+​

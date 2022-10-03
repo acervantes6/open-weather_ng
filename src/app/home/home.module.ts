@@ -9,17 +9,13 @@ import { MainComponent } from './components/main/main.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     HomeComponent,
     MainComponent,
     SidebarComponent,  
     SearchComponent,
-    ResultsComponent,
-  ],
-  exports: [
-    SearchComponent
+    ResultsComponent
   ],
   imports: [
     CommonModule,

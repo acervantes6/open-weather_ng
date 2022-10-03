@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SearchService } from '../../services/search.service';
+import { debounceTime, filter, map, tap } from 'rxjs/operators';
+import { City } from '../../interfaces/city.interface';
 
 @Component({
   selector: 'app-search',
@@ -9,52 +10,38 @@ import { SearchService } from '../../services/search.service';
 })
 export class SearchComponent implements OnInit {
 
-  weather: any;
   myForm: FormGroup = this.fb.group({
-    cityName: [ 'london', [ Validators.required ] ]
+    cityName: [ '', [ Validators.required ] ]
   });
+  loading: boolean = false;
+  @Output() submitted = new EventEmitter<City>();
 
-  constructor( 
-    private fb: FormBuilder,
-    private searchService: SearchService 
-    ) { }
-
-    fieldIsValid( field: string ){
-      return this.myForm.controls[field].errors
-        && this.myForm.controls[field].touched;
-    }
+  constructor( private fb: FormBuilder ) { }
 
   ngOnInit(): void {
+    this.onFormSubmit();
   }
 
-  getWeather(cityName: string) {
-    this.searchService.getWeather( cityName )
-    .subscribe( 
-      resp => {
-        console.log(resp)
-        this.weather = resp 
-      },
-      err => console.log(err)
-    )
+  fieldIsValid( field: string ){
+    return this.myForm.controls[field].errors
+      && this.myForm.controls[field].touched;
   }
 
-  submitCity() {
-    if ( this.myForm.invalid ) {
-      this.myForm.markAllAsTouched();
-      return;
+  onFormSubmit(){
+    this.myForm.get('cityName')?.valueChanges
+      .pipe(
+        tap( search => {
+          this.loading = true;
+        }),
+        map( (search) => search.trim()),
+        debounceTime(2500), 
+        filter( (search) => search !== '' ),
+        tap( (search) => {
+          this.submitted.emit( search )
+          this.loading = false;
+        }),
+      )
+      .subscribe()
     }
-    // this.getWeather(this.myForm.value);
-    console.log(this.myForm.value);
-    this.myForm.reset();
-  }
-
-  // submitLocation(cityName: HTMLInputElement) {
-  //   this.getWeather( cityName.value );
-
-  //   cityName.value = '';
-  //   cityName.focus();
-
-  //   return false
-  // }
 
 }

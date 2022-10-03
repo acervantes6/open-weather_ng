@@ -1,7 +1,38 @@
 <div class="row container mt-4">
-    <div class="col-3">
+    <div class="col-4">
         <app-sidebar></app-sidebar>
+        <app-search (submitted)="onSearch($event)"></app-search>
     </div>
-    <div class="col-9">
-        <app-results></app-results>
-</div>
+    <div class="col-8">
+        <app-results *ngIf="weather$ | async as weather" [weather]="weather"></app-results>
+        <div *ngIf="days" class="continer mt-2">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Día/Hora</th>
+                    <th>Clima</th>
+                    <th>Ver mas</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let day of days; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td> {{ day.dt_txt | date: 'short' }} </td>
+                    <td> {{ day.weather[0].description | titlecase}}, {{ day.main.temp | number:'1.0-0'}}&#8451; </td>
+                    <td>
+                        <a class="p-1 rounded" 
+                           role="button" 
+                           (click)="onSelect(day)"
+                           >Ver...
+                        </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+      </div>
+
+
+
+  
